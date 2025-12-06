@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Fulda RH - Gomisteri & CNC</title>
+<style>
+/* ROOT COLORS */
+:root{
+  --dark:#2e2e2e;
+  --primary:#ffffff; /* ngjyra kryesore */
+  --gold:#ffd700;
+  --card:#111;
+  --shadow:0 8px 20px rgba(0,0,0,0.6);
+  --text-light:#fff;
+  --text-muted:#bbb;
+}
+
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Poppins', sans-serif;background:var(--dark);color:var(--text-light);line-height:1.5;}
+
+/* TOPBAR */
+.topbar{
+  background:#000;
+  color:var(--gold);
+  padding:8px 20px;
+  display:flex;
+  justify-content:space-between;
+  position:fixed;
+  top:0;
+  width:100%;
+  z-index:1000;
+  font-size:14px;
+}
+
+/* HEADER */
+header{
+  background:#ff585800;
+  padding:15px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  position:fixed;
+  top:32px;
+  width:100%;
+  z-index:999;
+  box-shadow:var(--shadow);
+}
+header img{width:60px;}
+nav a{
+  color:var(--text-light);
+  margin-left:20px;
+  text-decoration:none;
+  font-weight:500;
+  transition:0.3s;
+}
+nav a:hover{color:var(--primary);}
+
+/* HERO */
+.hero{
+  margin-top:110px;
+  padding:40px 20px;
+  text-align:center;
+  position:relative;
+}
+.hero img{
+  width:90%;
+  border-radius:15px;
+  box-shadow:0 0 25px var(--primary);
+  transition:0.5s;
+}
+.hero img:hover{
+  transform:scale(1.02);
+  box-shadow:0 0 35px var(--primary);
+}
+.hero p{
+  max-width:700px;
+  margin:20px auto 0;
+  font-size:18px;
+  color:var(--text-muted);
+}
+
+/* SECTION TITLES */
+h2.section-title{
+  text-align:center;
+  font-size:36px;
+  font-weight:700;
+  color:var(--primary);
+  margin-bottom:30px;
+  text-shadow:0 0 8px rgba(255,255,255,0.2);
+}
+
+/* SERVICES */
+.services{padding:60px 20px;}
+.service-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:25px;
+}
+.service-box{
+  background:var(--card);
+  padding:25px;
+  border-radius:12px;
+  border:1px solid #222;
+  box-shadow:var(--shadow);
+  transition:0.4s;
+  text-align:center;
+}
+.service-box:hover{
+  transform:translateY(-10px);
+  border-color:var(--primary);
+  box-shadow:0 12px 25px rgba(226,59,59,0.5);
+}
+.service-box h3{color:var(--primary);margin-bottom:10px;}
+.service-box p{color:var(--text-muted);margin-bottom:10px;}
+.service-box img{width:45px;margin-top:10px;transition:0.3s;}
+.service-box img:hover{transform:rotate(10deg);}
+
+/* ABOUT */
+.about{padding:60px 20px;text-align:center;}
+.about img{
+  width:90%;
+  max-width:700px;
+  border-radius:15px;
+  margin-top:20px;
+  box-shadow:0 0 25px var(--primary);
+}
+
+/* FAQ */
+.faq{padding:60px 20px;}
+details{
+  background:var(--card);
+  padding:20px;
+  margin-bottom:15px;
+  border-radius:10px;
+  border-left:4px solid var(--primary);
+  box-shadow:var(--shadow);
+}
+summary{font-weight:600;cursor:pointer;font-size:16px;}
+details p{padding-top:10px;color:var(--text-muted);}
+
+/* TEAM */
+.team{padding:60px 20px;}
+.team-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+  gap:25px;
+}
+.team-box{
+  background:var(--card);
+  padding:20px;
+  border-radius:12px;
+  text-align:center;
+  border:1px solid #222;
+  box-shadow:var(--shadow);
+  transition:0.3s;
+}
+.team-box:hover{transform:translateY(-8px);border-color:var(--primary);}
+.team-box img{width:100%;border-radius:12px;margin-bottom:10px;}
+
+/* GALLERY */
+.gallery{padding:60px 20px;}
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:15px;
+}
+.gallery-grid img{
+  width:100%;
+  border-radius:12px;
+  transition:0.3s;
+}
+.gallery-grid img:hover{transform:scale(1.05);box-shadow:0 0 25px var(--primary);}
+
+/* STATS */
+.stats{padding:60px 20px;}
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:25px;
+}
+.stat-box{
+  background:var(--card);
+  padding:25px;
+  border-radius:12px;
+  border:1px solid #222;
+  text-align:center;
+  box-shadow:var(--shadow);
+  transition:0.3s;
+}
+.stat-box:hover{transform:translateY(-8px);border-color:var(--primary);}
+.stat-number{font-size:32px;color:var(--primary);font-weight:700;}
+
+/* REVIEWS */
+.reviews{padding:60px 20px;}
+.review-scroll{
+  display:flex;
+  overflow-x:auto;
+  gap:20px;
+  padding-bottom:10px;
+}
+.review-box{
+  min-width:260px;
+  background:var(--card);
+  padding:20px;
+  border-radius:12px;
+  border:1px solid #222;
+  box-shadow:var(--shadow);
+
+}
+.review-box:hover{transform:translateY(-8px);border-color:var(--primary);}
+
+/* CONTACT */
+.contact{padding:60px 20px;}
+.contact-box{
+  background:var(--card);
+  padding:25px;
+  border-radius:12px;
+  border:1px solid #222;
+  box-shadow:var(--shadow);
+  max-width:500px;
+  margin:0 auto 20px auto;
+  text-align:center;
+}
+.contact-box p{margin:10px 0;color:var(--text-muted);}
+iframe{width:100%;height:300px;border-radius:15px;margin-top:20px;box-shadow:var(--shadow);}
+
+/* FOOTER */
+footer{
+  background:#000;
+  text-align:center;
+  padding:20px;
+  border-top:2px solid var(--primary);
+  color:var(--text-muted);
+  font-size:14px;
+  margin-top:40px;
+}
+
+
+
+  .logo {
+    display: block;       /* Bën imazhin bllok, jo inline */
+ /* Gjerësia maksimale për desktop */
+    width: 10%;          /* Merr të gjithë gjerësinë e prindit */
+      /* Ruaj proporcione */   /* Qendron në mes */
+  }
+
+/* MEDIA */
+@media(max-width:600px){
+  .hero img{width:100%;}
+  nav a{margin-left:10px;font-size:14px;}
+  h2.section-title{font-size:28px;}
+
+    
+
+}
+@media (max-width: 600px) {
+    .logo {
+      
+        width: 30%;
+         padding-top: 15px;
+
+    }
+  }
+
+
+</style>
+</head>
+<body>
+
+<div class="topbar">
+     <span>070 329 054</span>
+ <span>Grupçin, Zhelinë</span>
+
+</div>
+
+<header>
+<img src="foto/asd.png" alt="Logo" class="logo">
+ <nav>
+  <a href="#services">Sherbimet</a>
+  <a href="#about">Rreth Nesh</a>
+  <a href="#team">Ekipi</a>
+  <a href="#contact">Kontakt</a>
+ </nav>
+</header>
+<br>
+<div class="hero">
+ <img src="foto\cnc2.jpg">
+ <p>​Ne i kushtojmë rëndësi çdo detaji dhe sigurojmë që çdo punim të jetë i qëndrueshëm, funksional dhe estetik. Me Fulda RH, fellgat e makinës suaj janë në duar të sigurta.</p>
+</div>
+
+<section id="services" class="services">
+ <h2 class="section-title">Çfarë ofrojmë ne?</h2>
+ <div class="service-grid">
+  <div class="service-box">
+   <h4>Riparim i Fellgave</h3>
+   <p>Riparim profesional pa dallime apo dobësi.</p>
+   <img src="foto/1083315-e03667e8.png">
+  </div>
+  <div class="service-box">
+   <h3>CNC + Lyerje</h3>
+   <p>CNC dhe lyerje me profesionalizëm.</p>
+   <img src="foto/2880960-370f7550.png">
+  </div>
+  <div class="service-box">
+   <h3>Shitje Goma</h3>
+   <p>Për çdo lloj automjeti, moto, kamion, traktor.</p>
+   <img src="foto/2137841.png">
+  </div>
+  <div class="service-box">
+   <h3>Shitje Fellga</h3>
+   <p>Të çdo modeli dhe madhësie.</p>
+   <img src="foto/735030-e810ade8.png">
+  </div>
+ </div>
+</section>
+
+<section id="about" class="about">
+ <h2 class="section-title">Rreth Kompanisë</h2>
+ <p>​Fulda-RH është një kompani e specializuar në CNC punime për fellgat, duke ofruar shërbime të avancuara dhe të personalizuara për çdo klient. Me përvojë të gjatë në industrinë automobilistike dhe teknologjinë më moderne, ne garantojmë precizion, cilësi të lartë dhe rezultate të qëndrueshme në çdo projekt. </p>
+ <img style=" width: 50%; height: 20%;"src="foto/photo-1712975348541-2e25749f332c.jpeg">
+</section>
+
+<section class="faq">
+ <h2 class="section-title">Fakte & Pyetje</h2>
+ <details><summary>Kur duhet t'i ndërrojmë gomat?</summary><p>Zakonisht nderrohen 3 deri 4 vite por perseri kane varresi nga prodhimi i gomes nga cila kompani eshte prodhuar</p></details>
+ <details><summary>A drejtohen fellnet e shtrembura?</summary><p>Po ne me profesionalizem dhe eksperience te gjate i drejtojme fellnet e shtrembura pa pasur asnje lloj verejtje nga e cila ka qene me pare, si dhe ata fellne qe jan te keputura mund te ngjiten perseri te cilet kane nje force te madhe te qendrueshme por te cilat duhet te trajtohen me kudjes maksimal</p></details>
+ <details><summary>A dëmtohen nga CNC?</summary><p>Jo, pavaresisht se gdhenden fellnet ata nuk kane asnje far dobesie, por nese behen shume shpesh cnc e humbin forcen e mepareshme.</p></details>
+</section>
+
+<section id="team" class="team">
+ <h2 class="section-title">Ekipi Ynë</h2>
+ <div class="team-grid">
+  <div class="team-box"><img src="foto/295021175_5642998172397051_5424284811308839494_n-24.jpg"><h3>Shemsedin Neziri</h3><p>Direktor</p></div>
+  <div class="team-box"><img src="foto/295021175_5642998172397051_5424284811308839494_n-24.jpg"><h3>Harbin Neziri</h3><p>CNC Makineri</p></div>
+  <div class="team-box"><img src="foto/295021175_5642998172397051_5424284811308839494_n-24.jpg"><h3>Sali Sejfuli</h3><p>Riparim Fellgash</p></div>
+  <div class="team-box"><img src="foto/295021175_5642998172397051_5424284811308839494_n-24.jpg"><h3>Xhihan Sejfuli</h3><p>Ndihmës</p></div>
+ </div>
+</section>
+
+<section class="gallery">
+ <h2 class="section-title">Galeria jonë</h2>
+ <div class="gallery-grid">
+  <img src="foto/rim-repair-CNC-lathe-before-and-after-4.webp"><img src="foto/20220920155552e1fa8ba9740f475c847a3918104587e3.webp">
+  <img src="foto/Alloy-Before-and-After-Mobile-Repair-copy.webp"><img src="foto/382282_478720875522298_528415795_n.jpg">
+  <img src="foto/CNC-Wheel-Machining-for-Automotive-Industry-1.jpg">
+ </div>
+</section>
+
+<section class="stats">
+ <h2 class="section-title">Çfarë na bën ndryshe?</h2>
+ <div class="stats-grid">
+  <div class="stat-box"><div class="stat-number">25+</div>Vite Eksperiencë</div>
+  <div class="stat-box"><div class="stat-number">1500+</div>Goma të Shitura</div>
+  <div class="stat-box"><div class="stat-number">200+</div>CNC Punime</div>
+  <div class="stat-box"><div class="stat-number">500+</div>Fellga të Riparuara</div>
+ </div>
+</section>
+
+<section class="reviews">
+ <h2 class="section-title">Çfarë thonë klientët tanë</h2>
+ <div class="review-scroll">
+  <div class="review-box"><h3>Jeton E.</h3><hr><br><p>​Kam qene shume i kenaqur me kompanine ne fjale, nga e cila kam marrur fellne, i kam punuar ne cnc pas disa kohesh dhe vazhdimisht i nderroj gomat te kjo kompani.</p></div>
+  <div class="review-box"><h3>Durim M.</h3><hr><br><p>Jam shumë i kënaqur me shërbimin e kësaj kompanie. Fellgat që kam marrë janë cilësore, dhe pas punës në CNC janë performuar perfekt. Gjithmonë vazhdoj të zgjedh gomat e tyre për makinën time.</p></div>
+  <div class="review-box"><h3>Agon S.</h3><hr><br><p>Produkti dhe shërbimi i kompanisë është fantastik! Fellgat ishin të sakta dhe të qëndrueshme pas përpunimit në CNC. Kam besim total dhe gjithmonë i ndryshoj gomat tek kjo kompani.</p></div>
+  <div class="review-box"><h3>Taulant A.</h3><hr><br><p>Komunikimi dhe shërbimi ishin të shkëlqyer. Fellgat që kam blerë janë të forta dhe të qëndrueshme, dhe pas disa punimeve në CNC nuk kam pasur asnjë problem. Me siguri do të vazhdoj të marr gomat vetëm tek kjo kompani.</p></div>
+ </div>
+</section>
+
+<section id="contact" class="contact">
+ <h2 class="section-title">Kontakti</h2>
+ <div class="contact-box">
+  <p>📞 070 329 054</p>
+  <p>📧 fulda@example.com</p>
+   <p>🅵 Facebook: <a href="https://www.facebook.com/Fulda.org.mk">Fulda RH</a></p>
+  <p >📸 Instagram:  <a href="https://www.instagram.com/fulda_r_h?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">@fulda_rh</a></p>
+  <p>🎵 TikTok: <a href="https://www.tiktok.com/@fulda_rh?is_from_webapp=1&sender_device=pc">fulda_rh</a></p>
+ </div>
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2966.7116426879825!2d21.12812287687146!3d41.963528360059975!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x135409111f40957d%3A0xe03528a4b01c5978!2sVullkanizer%20Fulda%20RH!5e0!3m2!1sen!2smk!4v1764977958491!5m2!1sen!2smk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</section>
+
+<footer>
+ © 2025 Fulda RH – Të gjitha të drejtat e rezervuara. <br> Krijuar nga : <a href="https:\\jeton-elezi.info">Jeton Elezi</a>
+</footer>
+
+</body>
+</html>
